@@ -191,3 +191,28 @@ const factorial = (texto10 = undefined) => {
     return console.info(calcFactorial);
 }
 factorial(9);
+
+//12) Programa una función que determine si un número es primo (aquel que solo es divisible por sí mismo y 1) o no, pe. miFuncion(7) devolverá true.
+const numPrimo = (texto11 = undefined) => {
+    if (texto11 === undefined) {
+        return console.warn('No has ingresado ningun valor');
+    }
+    if (typeof texto11 !== 'number') {
+        return console.warn('Solo se permiten numeros');
+    }
+    if (Math.sign(texto11)=== -1) {
+        return console.warn('Solo se permiten numeros positivos');
+    }
+
+    let divisible = false;
+    for (let i = 2; i < texto11; i++) {
+        if ((texto11 % i) === 0) {
+            divisible = true
+            break
+        }
+    }
+    return (divisible)
+    ? console.info(`${texto11} No es un numero Primo`)
+    : console.info(`${texto11} Es un numero Primo`);
+}
+numPrimo(113);
