@@ -142,13 +142,13 @@ const eliminandoPatron = (texto7 = '', patron = '') => {
     if (!patron) {
         return console.warn('No has ingresado el praton a eliminar');
     }
-    return console.info(`8. El patron a eliminar es ${patron}`,texto7.replace(new RegExp(patron,'ig'),''));
+    return console.info(`8. El patron a eliminar es ${patron},`,texto7.replace(new RegExp(patron,'ig'),''));
 }
 eliminandoPatron('abc1, abc2, abc3, abc4', 'abc');
 
 //9) Programa una función que obtenga un numero aleatorio entre 501 y 600.
 const numeroAleatorio = () => {
-    console.info(Math.round(Math.random()*99+501));
+    console.info('9. Número aleatorio del 500 al 601',Math.round(Math.random()*99+501));
 }
 numeroAleatorio()
 
@@ -165,9 +165,9 @@ const capicua = (texto9 = undefined) => {
     let compararNum = texto9.split('').reverse().join('');
 
     if (texto9 === compararNum) {
-        return console.info(`El numero ${texto9} es un numero capicúa`);
+        return console.info(`10. El numero ${texto9} es un numero capicúa`);
     }else{
-        return console.info(`El numero ${texto9} no es un numero capicúa`);
+        return console.info(`10. El numero ${texto9} no es un numero capicúa`);
     }
 }
 capicua(345);
@@ -178,17 +178,17 @@ const factorial = (texto10 = undefined) => {
         return console.warn('No has ingresado ningun valor');
     }
     if (typeof texto10 !== 'number') {
-        return console.warn('Solo se permiten numeros');
+        return console.warn('Solo se permiten números');
     }
     if (Math.sign(texto10)=== -1) {
-        return console.warn('Solo se permiten numeros positivos');
+        return console.warn('Solo se permiten números positivos');
     }
     let calcFactorial = 1;
     for (let i = texto10; i > 1; i--) {
         calcFactorial *= i;
 
     }
-    return console.info(calcFactorial);
+    return console.info('11.',`El factorial de ${texto10} es`,calcFactorial);
 }
 factorial(9);
 
@@ -212,7 +212,69 @@ const numPrimo = (texto11 = undefined) => {
         }
     }
     return (divisible)
-    ? console.info(`${texto11} No es un numero Primo`)
-    : console.info(`${texto11} Es un numero Primo`);
+    ? console.info(`12. ${texto11} No es un número Primo`)
+    : console.info(`12. ${texto11} Es un número Primo`);
 }
 numPrimo(113);
+
+//13) Programa una función que determine si un número es par o impar, pe. miFuncion(29) devolverá Impar.
+const numParImpar = (texto12 = undefined) => {
+    if (texto12 === undefined) {
+        return console.warn('Debes ingresar al menos un número');
+    }
+    if (typeof texto12 !== 'number') {
+        console.warn('Caracter invalido');
+    }
+    if ((texto12 % 2) === 0) {
+        return console.info(`13. ${texto12} Es un número Par`);
+    }else{
+        return console.info(`13. ${texto12} Es un número Impar`);
+    }
+}
+numParImpar(48);
+
+//14) Programa una función para convertir grados Celsius a Fahrenheit y viceversa, pe. miFuncion(0,"C") devolverá 32°F.
+const convertirGrados = (gradosInsert = undefined, unidad = undefined) => {
+    if (gradosInsert === undefined) {
+        return console.warn('No has insertado ningun valor');
+    }
+    if (unidad === undefined) {
+        return console.warn('No has insertado la unidad de conversión');
+    }
+    if (unidad.length !== 1 || !(/C|F/).test(unidad)) {
+        return console.warn('Tipo de unidad invalida');
+    }
+    if (unidad === 'C') {
+        return console.info(`14. ${gradosInsert}°C = ${((Math.round(gradosInsert *9/5) + 32))}°F`);
+    }
+    if (unidad === 'F') {
+        return console.info(`14. ${gradosInsert}°F = ${Math.round((gradosInsert - 32) * (5/9))}°C`);
+    }
+}
+convertirGrados(346,'F');
+
+//15) Programa una función para convertir números de base binaria a decimal y viceversa, pe. miFuncion(100,2) devolverá 4 base 10.
+const binarioDecimalViceversa = (texto14 = undefined, base = undefined) => {
+    if (texto14 === undefined) {
+        return console.warn('No has ingresado ningun valor');
+    }
+    if (typeof texto14 !== 'number') {
+        return console.warn('Solo se permiten numeros');
+    }
+    if (base === undefined) {
+        return console.warn('Debes insertar una base');
+    }
+    if (typeof base !== 'number') {
+        return console.warn('Tipo de base invalido');
+    }
+    if (base === 2) {
+        return console.info(`15. ${texto14} base ${base} = ${parseInt(texto14,base)} base 10`);
+    }else if (base === 10) {
+        return console.info(`15. ${texto14} base ${base} = ${(texto14.toString(2))} base 2`)
+    }
+
+}
+binarioDecimalViceversa(55,10);
+
+
+
