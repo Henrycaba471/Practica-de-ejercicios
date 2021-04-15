@@ -276,5 +276,44 @@ const binarioDecimalViceversa = (texto14 = undefined, base = undefined) => {
 }
 binarioDecimalViceversa(55,10);
 
+//16) Programa una función que devuelva el monto final después de aplicar un descuento a una cantidad dada, pe. miFuncion(1000, 20) devolverá 800.
+const aplicarDescuento = (texto15 = undefined, descuento = 0) => {
+    if (texto15 === undefined) {
+        return console.warn('No  has ingresado ningun texto');
+    }
+    if (typeof texto15 !== 'number') {
+        return console.warn('El valor debe ser ingresado en número');
+    }
+    if (Math.sign(texto15) === -1) {
+        return console.warn('El valor no puedes ser negativo');
+    }
+    if (typeof descuento !== 'number') {
+        return  console.warn('El descuento debe ser ingresado en numero');
+    }
+    if (Math.sign(descuento) === -1) {
+        return console.warn('No se puede aplicar ese descuento, estas insertando un descuento en negativo');
+    }
+    return console.info(`16. Valor de venta $${texto15} menos ${descuento}% de descuneto seria: $${texto15 - ((texto15*descuento)/100)}`)
+}
+aplicarDescuento(1400, 17);
 
+//17) Programa una función que dada una fecha válida determine cuantos años han pasado hasta el día de hoy, pe. miFuncion(new Date(1984,4,23)) devolverá 35 años (en 2020).
+const calcularAnio = (fecha = undefined) => {
+    if (fecha === undefined) {
+        return console.warn('Debes ingresar una facha');
+    }
+    if (!(fecha instanceof Date)) {
+        return console.warn('El valor ingresado no es una fecha');
+    }
 
+    let hoyMenosFecha = new Date().getTime() - fecha.getTime(),
+    aniosEnMS = 1000 * 60 * 60 * 24 * 365,
+    aniosHumanos = Math.floor(hoyMenosFecha/aniosEnMS);
+
+    return (Math.sign(aniosHumanos) === -1)
+    ? console.info(`17. Faltan ${Math.abs(aniosHumanos)} años para el ${fecha.getFullYear()}`)
+    : (Math.sign(aniosHumanos) === 1)
+    ? console.info(`17. Han pasado ${aniosHumanos} años desde ${fecha.getFullYear()}`)
+    : console.info(`17. Estamos en el año actual ${fecha.getFullYear()}`);
+}
+calcularAnio(new Date(2040,03,15));
