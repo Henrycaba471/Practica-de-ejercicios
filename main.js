@@ -300,7 +300,7 @@ aplicarDescuento(1400, 17);
 //17) Programa una función que dada una fecha válida determine cuantos años han pasado hasta el día de hoy, pe. miFuncion(new Date(1984,4,23)) devolverá 35 años (en 2020).
 const calcularAnio = (fecha = undefined) => {
     if (fecha === undefined) {
-        return console.warn('Debes ingresar una facha');
+        return console.warn('Debes ingresar una fecha');
     }
     if (!(fecha instanceof Date)) {
         return console.warn('El valor ingresado no es una fecha');
@@ -316,4 +316,159 @@ const calcularAnio = (fecha = undefined) => {
     ? console.info(`17. Han pasado ${aniosHumanos} años desde ${fecha.getFullYear()}`)
     : console.info(`17. Estamos en el año actual ${fecha.getFullYear()}`);
 }
-calcularAnio(new Date(2040,03,15));
+calcularAnio(new Date(1992,07,20));
+
+//18) Programa una función que dada una cadena de texto cuente el número de vocales y consonantes, pe. miFuncion("Hola Mundo") devuelva Vocales: 4, Consonantes: 5.
+const vocalesYConsonantes = (texto16 = '') => {
+    if (!texto16) {
+        return console.warn('No has ingresado ningun texto');
+    }
+    if (typeof texto16 !== 'string') {
+        return console.warn('Debes ingresar un texto, no se admiten numeros');
+    }
+    let vocales = 0,
+        consonantes = 0;
+
+    for (let letra of texto16) {
+        if (/[AEIOUÁÉÍÓÚaeiouáéíóú]/.test(letra)) {
+            vocales++;
+        }
+        if (/[BCDFGHJKLMNÑPQRSTVWXYZabcdfghjklmnñpqrstvwxyz]/.test(letra)) {
+            consonantes++;
+        }
+    }
+    return console.info('18. ',{
+        texto16,
+        vocales,
+        consonantes
+    })
+}
+vocalesYConsonantes('estamos contanto consonantes y vocales');
+
+//19) Programa una función que valide que un texto sea un nombre válido, pe. miFuncion("Jonathan MirCha") devolverá verdadero.
+const validarNombre = (texto17 = '') => {
+    if (!texto17) {
+        return console.warn('No has ingresado ningun nombre');
+    }
+    if (typeof texto17 !== 'string') {
+        return console.warn('El valor ingresado no es valido, debes ingresar un nombre correcto');
+    }
+
+    let expREg = /^[A-Za-zÑñÁÉÍÓÚáéíóú\s]+$/g.test(texto17);
+    return (expREg)
+    ? console.info('19. Nombre ingresado correctamente')
+    : console.info('19. Has ingresado un nombre incorrecto');
+}
+validarNombre('Henry');
+
+//20) Programa una función que valide que un texto sea un email válido, pe. miFuncion("jonmircha@gmail.com") devolverá verdadero.
+const validarEmail = (texto18 = '') => {
+    if (!texto18) {
+        return console.warn('Debes ingresar un correo valido');
+    }
+    if (typeof texto18 !== 'string') {
+        return console.warn('El valor ingresado no es valido, debes ingresar un email correcto');
+    }
+    let expRegu = /[a-z0-9]+(\.[_a-z0-9]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,15})/i.test(texto18);
+
+    return (expRegu)
+    ? console.info('20. Email ingresado correctamente')
+    : console.info('20. Correo invalido')
+}
+validarEmail('Jonmircha@gmail.com');
+
+//21) Programa una función que dado un array numérico devuelve otro array con los números elevados al cuadrado, pe. mi_funcion([1, 4, 5]) devolverá [1, 16, 25].
+const devolverCuadrados = (array = undefined) => {
+    if (array === undefined) {
+        return console.warn('No ingresaste el arreglo de numeros');
+    }
+    if (!(array instanceof Array)) {
+        return console.warn('El valor ingresado no es un arreglo');
+    }
+    if (array.length === 0) {
+        return console.warn('Has ingresado un arreglo vacio');
+    }
+    for (let num of array) {
+        if (typeof num !== 'number') {
+            return console.error(`El arreglo solo puede llevar numeros, ${num} no es un numero`);
+        }
+    }
+    const newArray = array.map(el => el*el);
+
+    return console.info(`21. Arreglo insertado [${array}], \nArreglo elevado al cuadrado [${newArray}]`);
+
+}
+devolverCuadrados([2,5,1]);
+
+//22) Programa una función que dado un array devuelva el número mas alto y el más bajo de dicho array, pe. miFuncion([1, 4, 5, 99, -60]) devolverá [99, -60].
+const arrayMayorMenor = (mayorMenor = undefined) => {
+    if (mayorMenor === undefined) {
+        return console.warn('No ingresaste el arreglo de numeros');
+    }
+    if (!(mayorMenor instanceof Array)) {
+        return console.warn('El valor ingresado no es un arreglo');
+    }
+    if (mayorMenor.length === 0) {
+        return console.warn('Has ingresado un arreglo vacio');
+    }
+    for (let org of mayorMenor) {
+        if (typeof org !== 'number') {
+            return console.error(`El valor ${org} no es un numero`);
+        }
+    }
+    return console.info(`22. Del arreglo [${mayorMenor}],\nValor mayor ${Math.max(...mayorMenor)}\nValor menor ${Math.min(...mayorMenor)}`);
+}
+arrayMayorMenor([7,9,-90,40,1]);
+
+//23) Programa una función que dado un array de números devuelva un objeto con 2 arreglos en el primero almacena los números pares y en el segundo los impares, pe. miFuncion([1,2,3,4,5,6,7,8,9,0]) devolverá {pares: [2,4,6,8,0], impares: [1,3,5,7,9]}.
+const sepParImpar = (paresImpares = undefined) => {
+    if (paresImpares === undefined) {
+        return console.warn('No ingresaste el arreglo de numeros');
+    }
+    if (!(paresImpares instanceof Array)) {
+        return console.warn('El valor ingresado no es un arreglo');
+    }
+    if (paresImpares.length === 0) {
+        return console.warn('Has ingresado un arreglo vacio');
+    }
+    for (let numer of paresImpares) {
+        if (typeof numer !== 'number') {
+            return console.error(`El valor '${numer}' en [${paresImpares}] no es un numero`);
+        }
+    }
+    return console.info('23. ',{
+        pares: paresImpares.filter(numer => numer % 2 === 0),
+        impares: paresImpares.filter(numer => numer % 2 === 1)
+    })
+}
+sepParImpar([6,7,8,1,5,2,3,4,9]);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
